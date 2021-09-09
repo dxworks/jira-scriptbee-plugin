@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraScriptBeePlugin", "JiraScriptBeePlugin\JiraScriptBeePlugin.csproj", "{0FF941F8-C012-4A83-8981-714A36ADA453}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginDemo", "PluginDemo\PluginDemo.csproj", "{5F4DBF7E-3B4B-4876-A18A-B9BE30D9E77E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{0FF941F8-C012-4A83-8981-714A36ADA453}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FF941F8-C012-4A83-8981-714A36ADA453}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FF941F8-C012-4A83-8981-714A36ADA453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4DBF7E-3B4B-4876-A18A-B9BE30D9E77E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4DBF7E-3B4B-4876-A18A-B9BE30D9E77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4DBF7E-3B4B-4876-A18A-B9BE30D9E77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4DBF7E-3B4B-4876-A18A-B9BE30D9E77E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
