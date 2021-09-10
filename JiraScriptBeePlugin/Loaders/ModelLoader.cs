@@ -26,7 +26,7 @@ namespace JiraScriptBeePlugin.Loaders
 
             var issuesDictionary = new Dictionary<string, ScriptBeeModel>();
             var authorsDictionary = new Dictionary<string, ScriptBeeModel>();
-            
+
             foreach (var content in fileContents)
             {
                 var projectResult = JsonConvert.DeserializeObject<StaticProjectResult>(content, jsonSerializerSettings);

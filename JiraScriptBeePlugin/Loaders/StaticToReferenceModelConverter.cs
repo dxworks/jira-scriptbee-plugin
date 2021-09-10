@@ -78,31 +78,36 @@ namespace JiraScriptBeePlugin.Loaders
 
                 var components = new Dictionary<string, Component>();
 
-                foreach (var changeItem in changes.SelectMany(change => change.items))
+                foreach (var changeItem in changes.OrderBy(change => change.created).SelectMany(change => change.items))
                 {
-                    if (components.TryGetValue(changeItem.field, out var component))
+                    if (changeItem.field != "Component")
                     {
-                        component.id = changeItem.to;
-                        component.name = changeItem.toString;
+                        continue;
+                    }
 
-                        if (component.id == null)
-                        {
-                            components.Remove(changeItem.field);
-                        }
+                    if (changeItem.fromString == null)
+                    {
+                        components.Add(changeItem.toString, new Component(changeItem.toString, changeItem.to));
                     }
                     else
                     {
-                        components.Add(changeItem.field, new Component(changeItem.toString, changeItem.to));
+                        components.Remove(changeItem.fromString);
+                        if (changeItem.toString != null)
+                        {
+                            components.Add(changeItem.toString, new Component(changeItem.toString, changeItem.to));
+                        }
                     }
                 }
 
                 var issueStatus = projectIssue.status.id == null
-                    ? null
+                    ? IssueStatus.Null
                     : issueStatusesDictionary[projectIssue.status.id];
-                var issueType = projectIssue.typeId == null ? null : issueTypesDictionary[projectIssue.typeId];
-                var creator = projectIssue.creatorId == null ? null : usersDictionary[projectIssue.creatorId];
-                var assignee = projectIssue.assigneeId == null ? null : usersDictionary[projectIssue.assigneeId];
-                var reporter = projectIssue.reporterId == null ? null : usersDictionary[projectIssue.reporterId];
+                var issueType = projectIssue.typeId == null
+                    ? IssueType.Null
+                    : issueTypesDictionary[projectIssue.typeId];
+                var creator = projectIssue.creatorId == null ? User.Null : usersDictionary[projectIssue.creatorId];
+                var assignee = projectIssue.assigneeId == null ? User.Null : usersDictionary[projectIssue.assigneeId];
+                var reporter = projectIssue.reporterId == null ? User.Null : usersDictionary[projectIssue.reporterId];
 
                 result.issues.Add(new Issue
                 (
@@ -150,7 +155,8 @@ namespace JiraScriptBeePlugin.Loaders
                         }
                         else
                         {
-                            _logger.Warning($"Found subtask id ({subTasksId}) that does not exist in the provided issues");
+                            _logger.Warning(
+                                $"Found subtask id ({subTasksId}) that does not exist in the provided issues");
                         }
                     }
                 }

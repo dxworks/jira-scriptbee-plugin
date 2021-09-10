@@ -14,6 +14,7 @@ namespace JiraScriptBeePlugin.Models
         public List<Comment> comments { get; init; }
         public List<Change> changes { get; init; }
 
+        public static User Null = new("", "", "", "", "", "", new List<Comment>(), new List<Change>());
 
         public User(string self, string accountId, string username, string email, string name, string avatarUrl,
             List<Comment> comments, List<Change> changes)
