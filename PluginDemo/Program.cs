@@ -16,9 +16,9 @@ namespace PluginDemo
             }
 
             var modelLoader = new ModelLoader();
-            var loadedModels = modelLoader.LoadModel(new List<string>
+            var loadedModels = modelLoader.LoadModel(new List<Stream>
             {
-                File.ReadAllText(args[0])
+                File.OpenRead(args[0])
             });
         }
     }
