@@ -85,29 +85,29 @@ namespace JiraScriptBeePlugin.Loaders
                         continue;
                     }
 
-                    if (changeItem.fromString == null)
+                    if (string.IsNullOrEmpty(changeItem.fromString))
                     {
                         components.Add(changeItem.toString, new Component(changeItem.toString, changeItem.to));
                     }
                     else
                     {
                         components.Remove(changeItem.fromString);
-                        if (changeItem.toString != null)
+                        if (!string.IsNullOrEmpty(changeItem.toString))
                         {
                             components.Add(changeItem.toString, new Component(changeItem.toString, changeItem.to));
                         }
                     }
                 }
 
-                var issueStatus = projectIssue.status.id == null
+                var issueStatus = string.IsNullOrEmpty(projectIssue.status.id)
                     ? IssueStatus.Null
                     : issueStatusesDictionary[projectIssue.status.id];
-                var issueType = projectIssue.typeId == null
+                var issueType = string.IsNullOrEmpty(projectIssue.typeId)
                     ? IssueType.Null
                     : issueTypesDictionary[projectIssue.typeId];
-                var creator = projectIssue.creatorId == null ? User.Null : usersDictionary[projectIssue.creatorId];
-                var assignee = projectIssue.assigneeId == null ? User.Null : usersDictionary[projectIssue.assigneeId];
-                var reporter = projectIssue.reporterId == null ? User.Null : usersDictionary[projectIssue.reporterId];
+                var creator = string.IsNullOrEmpty(projectIssue.creatorId) ? User.Null : usersDictionary[projectIssue.creatorId];
+                var assignee = string.IsNullOrEmpty(projectIssue.assigneeId) ? User.Null : usersDictionary[projectIssue.assigneeId];
+                var reporter = string.IsNullOrEmpty(projectIssue.reporterId) ? User.Null : usersDictionary[projectIssue.reporterId];
 
                 result.issues.Add(new Issue
                 (

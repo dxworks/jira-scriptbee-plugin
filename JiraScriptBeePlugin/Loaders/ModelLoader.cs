@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using DxWorks.ScriptBee.Plugin.Api;
 using JiraScriptBeePlugin.Models;
 using Newtonsoft.Json;
-using ScriptBeePlugin;
 using Serilog;
 
 namespace JiraScriptBeePlugin.Loaders
@@ -10,10 +12,11 @@ namespace JiraScriptBeePlugin.Loaders
     public class ModelLoader : IModelLoader
     {
         private readonly StaticToReferenceModelConverter _modelConverter =
-            new(new LoggerConfiguration().WriteTo.File("logs.txt").CreateLogger());
+            new(new LoggerConfiguration().CreateLogger());
 
-        public Dictionary<string, Dictionary<string, ScriptBeeModel>> LoadModel(List<Stream> fileStreams,
-            Dictionary<string, object> configuration = null)
+        public Task<Dictionary<string, Dictionary<string, ScriptBeeModel>>> LoadModel(List<Stream> fileStreams,
+            Dictionary<string, object>? configuration = null,
+            CancellationToken cancellationToken = default)
         {
             var jsonSerializer = new JsonSerializer
             {
@@ -31,30 +34,31 @@ namespace JiraScriptBeePlugin.Loaders
             var authorsDictionary = new Dictionary<string, ScriptBeeModel>();
             foreach (var stream in fileStreams)
             {
-                using (var streamReader = new StreamReader(stream))
+                using var streamReader = new StreamReader(stream);
+                using var jsonTextReader = new JsonTextReader(streamReader);
+                var projectResult = jsonSerializer.Deserialize<StaticProjectResult>(jsonTextReader);
+
+                if (projectResult is null)
                 {
-                    using (var jsonTextReader = new JsonTextReader(streamReader))
-                    {
-                        var projectResult = jsonSerializer.Deserialize<StaticProjectResult>(jsonTextReader);
+                    continue;
+                }
 
-                        var convertedModel = _modelConverter.Convert(projectResult);
+                var convertedModel = _modelConverter.Convert(projectResult);
 
-                        foreach (var issue in convertedModel.issues)
-                        {
-                            issuesDictionary.Add(issue.key, issue);
-                        }
+                foreach (var issue in convertedModel.issues)
+                {
+                    issuesDictionary.Add(issue.key, issue);
+                }
 
-                        foreach (var user in convertedModel.users)
-                        {
-                            authorsDictionary.Add(user.username, user);
-                        }
-                    }
+                foreach (var user in convertedModel.users)
+                {
+                    authorsDictionary.Add(user.username, user);
                 }
             }
 
             dictionary.Add("Issue", issuesDictionary);
             dictionary.Add("Author", authorsDictionary);
-            return dictionary;
+            return Task.FromResult(dictionary);
         }
 
         public string GetName()

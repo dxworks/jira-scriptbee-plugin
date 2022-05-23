@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using ScriptBeePlugin;
+using DxWorks.ScriptBee.Plugin.Api;
 
 namespace JiraScriptBeePlugin.Models
 {
     public class Issue : ScriptBeeModel
     {
-        public Issue parent { get; set; }
-        public List<Issue> subTasks { get; set; }
+        public Issue? parent { get; set; }
+        public List<Issue> subTasks { get; set; } = new();
         public string key { get; init; }
         public string id { get; init; }
         public string self { get; init; }
@@ -28,7 +28,7 @@ namespace JiraScriptBeePlugin.Models
         public Dictionary<string, object> customFields { get; init; }
         public long timeSpent { get; init; }
         public long timeEstimate { get; init; }
-        
+
         public Issue(string key, string id, string self, string summary, string description, IssueStatus status,
             IssueType issueType, string created, string updated, string priority, User creator, User assignee,
             User reporter, string parentId, List<string> subTasksIds, List<Change> changes, List<Comment> comments,

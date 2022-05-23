@@ -1,4 +1,4 @@
-﻿using ScriptBeePlugin;
+﻿using DxWorks.ScriptBee.Plugin.Api;
 
 namespace JiraScriptBeePlugin.Models
 {
