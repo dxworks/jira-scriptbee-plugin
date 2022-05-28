@@ -1,1 +1,1 @@
-# Jira ScriptBee Plugin
+# Jira Miner ScriptBee Plugin

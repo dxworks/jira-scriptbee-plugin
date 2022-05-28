@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\JiraScriptBeePlugin\JiraScriptBeePlugin.csproj"/>
+        <ProjectReference Include="..\DxWorks.ScriptBee.Plugins.JiraMiner\DxWorks.ScriptBee.Plugins.JiraMiner.csproj" />
     </ItemGroup>
 
 </Project>

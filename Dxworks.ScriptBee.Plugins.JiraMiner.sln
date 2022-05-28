@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraScriptBeePlugin", "JiraScriptBeePlugin\JiraScriptBeePlugin.csproj", "{0FF941F8-C012-4A83-8981-714A36ADA453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dxworks.ScriptBee.Plugins.JiraMiner", "DxWorks.ScriptBee.Plugins.JiraMiner\DxWorks.ScriptBee.Plugins.JiraMiner.csproj", "{0FF941F8-C012-4A83-8981-714A36ADA453}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginDemo", "PluginDemo\PluginDemo.csproj", "{5F4DBF7E-3B4B-4876-A18A-B9BE30D9E77E}"
 EndProject
