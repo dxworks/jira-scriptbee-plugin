@@ -17,10 +17,8 @@ jobs:
         id: semver_parser
         run: |
           semver=${TAG#"refs/tags/v"}
-          scriptbee_semver=${semver//v}
           
           echo ::set-output name=semver::$semver
-          echo ::set-output name=scriptbee_semver::$scriptbee_semver
         env:
           TAG: ${{ github.ref }}
 
@@ -31,6 +29,7 @@ jobs:
       - name: Release for OS
         run: |
           mkdir bin
+          ls -la
           dotnet publish -o bin -c Release -p:Version=${{ steps.semver_parser.outputs.semver }} DxWorks.ScriptBee.Plugins.JiraMiner/DxWorks.ScriptBee.Plugins.JiraMiner.csproj
 
       - name: Prepare Assets
@@ -41,22 +40,22 @@ jobs:
           cp -R bin/*.dll jira-miner
 
       - name: Create Archive
-        run: zip -j jira-miner@${{ steps.semver_parser.outputs.scriptbee_semver }}.zip jira-miner/*
+        run: zip -j jira-miner@${{ steps.semver_parser.outputs.$semver }}.zip jira-miner/*
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: jira-miner@${{ steps.semver_parser.outputs.scriptbee_semver }}.zip
-          path: jira-miner@${{ steps.semver_parser.outputs.scriptbee_semver }}.zip
+          name: jira-miner@${{ steps.semver_parser.outputs.$semver }}.zip
+          path: jira-miner@${{ steps.semver_parser.outputs.$semver }}.zip
 
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          name: jira-miner ${{ steps.semver_parser.outputs.scriptbee_semver }}
+          name: jira-miner ${{ steps.semver_parser.outputs.$semver }}
           body: ""
           prerelease: false
           draft: false
           fail_on_unmatched_files: true
           files: |
-            ./jira-miner@${{ steps.semver_parser.outputs.scriptbee_semver }}.zip
+            ./jira-miner@${{ steps.semver_parser.outputs.$semver }}.zip
