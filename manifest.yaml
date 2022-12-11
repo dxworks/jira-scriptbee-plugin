@@ -4,5 +4,5 @@ description: "JiraMiner Loader Plugin"
 name: JiraMiner
 extensionPoints:
   - kind: Loader
-    entryPoint: DxWorks.ScriptBee.Plugins.JiraMiner.dll
+    entryPoint: Dxworks.ScriptBee.Plugins.JiraMiner.dll
     version: 1.0.0

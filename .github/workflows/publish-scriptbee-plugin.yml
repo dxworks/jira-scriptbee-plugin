@@ -29,8 +29,7 @@ jobs:
       - name: Release for OS
         run: |
           mkdir bin
-          ls -la
-          dotnet publish -o bin -c Release -p:Version=${{ steps.semver_parser.outputs.semver }} DxWorks.ScriptBee.Plugins.JiraMiner/DxWorks.ScriptBee.Plugins.JiraMiner.csproj
+          dotnet publish -o bin -c Release -p:Version=${{ steps.semver_parser.outputs.semver }} Dxworks.ScriptBee.Plugins.JiraMiner/Dxworks.ScriptBee.Plugins.JiraMiner.csproj
 
       - name: Prepare Assets
         run: |
