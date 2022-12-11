@@ -1,0 +1,1 @@
+﻿# Jira Miner ScriptBee Plugin

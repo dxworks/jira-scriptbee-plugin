@@ -9,9 +9,9 @@ repositories:
 
 
 issues:
-  - https://github.com/dxworks/jira-scriptbee-pluginissues
+  - https://github.com/dxworks/jira-scriptbee-plugin/issues
 
-docs:  
+docs:
   - https://github.com/dxworks/jira-scriptbee-plugin/tree/master/README.md
 
 technologies:
@@ -24,6 +24,8 @@ tags:
 authors:
   - name: Andrei Timar
     github: https://github.com/andrei2699
+  - name: Tania Topciov
+    github: https://github.com/taniatopciov
 
 scriptBee:
   versions:
