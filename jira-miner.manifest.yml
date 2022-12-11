@@ -1,0 +1,33 @@
+slug: jira-miner
+name: JiraMiner
+description: JiraMiner Description
+
+license: Apache-2.0
+
+repositories:
+  - https://github.com/dxworks/jira-scriptbee-plugin
+
+
+issues:
+  - https://github.com/dxworks/jira-scriptbee-pluginissues
+
+docs:  
+  - https://github.com/dxworks/jira-scriptbee-plugin/tree/master/README.md
+
+technologies:
+  - C#
+  - Jira
+
+tags:
+  - Analysis
+
+authors:
+  - name: Andrei Timar
+    github: https://github.com/andrei2699
+
+scriptBee:
+  versions:
+    - version: 1.0.0
+      name: DxWorks.ScriptBee.Plugins.JiraMiner.dll
+      sourceCode: https://github.com/dxworks/jira-scriptbee-plugin/tree/master/Dxworks.ScriptBee.Plugins.JiraMiner
+      asset: "https://github.com/dxworks/jira-scriptbee-plugin/releases/download/v1.0.0/jira-miner@1.0.0.zip"      
