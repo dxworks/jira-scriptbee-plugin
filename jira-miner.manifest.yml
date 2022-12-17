@@ -35,4 +35,4 @@ scriptBee:
       name: dxworks/jira-scriptbee-plugin
       sourceCode: https://github.com/dxworks/jira-scriptbee-plugin/tree/v1.0.0/Dxworks.ScriptBee.Plugins.JiraMiner
       manifest: https://raw.githubusercontent.com/dxworks/jira-scriptbee-plugin/v1.0.0/manifest.yaml
-      asset: honeydew-scriptbee.zip  
+      asset: jira-miner-scriptbee.zip
