@@ -59,6 +59,6 @@ public class ModelLoader : IModelLoader
 
     public string GetName()
     {
-        return "jira";
+        return "jira-miner";
     }
 }
