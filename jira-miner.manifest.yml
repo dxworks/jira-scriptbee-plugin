@@ -28,8 +28,11 @@ authors:
     github: https://github.com/taniatopciov
 
 scriptBee:
+  id: jira-miner
+  type: plugin
   versions:
     - version: 1.0.0
-      name: DxWorks.ScriptBee.Plugins.JiraMiner.dll
-      sourceCode: https://github.com/dxworks/jira-scriptbee-plugin/tree/master/Dxworks.ScriptBee.Plugins.JiraMiner
-      asset: "https://github.com/dxworks/jira-scriptbee-plugin/releases/download/v1.0.0/jira-miner@1.0.0.zip"      
+      name: dxworks/jira-scriptbee-plugin
+      sourceCode: https://github.com/dxworks/jira-scriptbee-plugin/tree/v1.0.0/Dxworks.ScriptBee.Plugins.JiraMiner
+      manifest: https://github.com/dxworks/jira-scriptbee-plugin/blob/v1.0.0/manifest.yaml
+      asset: honeydew-scriptbee.zip  
